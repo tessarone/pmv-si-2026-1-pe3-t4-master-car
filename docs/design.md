@@ -1,9 +1,13 @@
 # 4. PROJETO DO DESIGN DE INTERAÇÃO
 
 ## 4.1 Personas
+
 Primeira Persona - João Alves [Persona joão alves.pdf](https://github.com/user-attachments/files/27223697/Persona.joao.alves.pdf)
+
 Segunda Persona - Mariana Souza [Persona Mariana Souza.pdf](https://github.com/user-attachments/files/27223702/Persona.Mariana.Souza.pdf)
+
 Terceira Persona - Kaio Pereira [Persona Kaio Pereira.pdf](https://github.com/user-attachments/files/27418040/Persona.Kaio.Pereira.pdf) 
+
 Quarta Persona - Pedro Melo [Persona Pedro Melo.pdf](https://github.com/user-attachments/files/27418086/Persona.Pedro.Melo.pdf) 
 
 
@@ -11,7 +15,9 @@ Quarta Persona - Pedro Melo [Persona Pedro Melo.pdf](https://github.com/user-att
 
 
 ## 4.2 Mapa de Empatia
+
 Mapa da Empatia João Alves - <img width="1920" height="1080" alt="Mapa da empatia João Alves" src="https://github.com/user-attachments/assets/20f52daf-5ef7-4d73-8175-3ac73b1420b4" /> 
+
 Mapa da Empatia Kaio Pereira -  <img width="1920" height="1080" alt="Mapa da Empatia Kaio Pereira " src="https://github.com/user-attachments/assets/340c3268-8525-4098-afd3-31ec9ec541c1" />
 
 
