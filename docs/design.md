@@ -2,13 +2,19 @@
 
 ## 4.1 Personas
 Primeira Persona - João Alves [Persona joão alves.pdf](https://github.com/user-attachments/files/27223697/Persona.joao.alves.pdf)
-Segunda Persona - [Persona Mariana Souza.pdf](https://github.com/user-attachments/files/27223702/Persona.Mariana.Souza.pdf)
-Terceira Persona - 
+Segunda Persona - Mariana Souza [Persona Mariana Souza.pdf](https://github.com/user-attachments/files/27223702/Persona.Mariana.Souza.pdf)
+Terceira Persona - Kaio Pereira [Persona Kaio Pereira.pdf](https://github.com/user-attachments/files/27418040/Persona.Kaio.Pereira.pdf) 
+Quarta Persona - Pedro Melo [Persona Pedro Melo.pdf](https://github.com/user-attachments/files/27418086/Persona.Pedro.Melo.pdf) 
+
+
 
 
 
 ## 4.2 Mapa de Empatia
-Mapa da Empatia é um material utilizado para conhecer melhor o seu cliente. A partir do mapa da empatia é possível detalhar a personalidade do cliente e compreendê-la melhor. O objetivo é obter um nível mais profundo de compreensão de uma persona. A seguir um exemplo de template que pode ser usado para o mapa de empatia. Para cada persona deverá ser apresentado o seu respectivo mapa de empatia. Sugere-se a utilização do template apresentado em https://www.rdstation.com/blog/marketing/mapa-da-empatia/.
+Mapa da Empatia João Alves - <img width="1920" height="1080" alt="Mapa da empatia João Alves" src="https://github.com/user-attachments/assets/20f52daf-5ef7-4d73-8175-3ac73b1420b4" /> 
+Mapa da Empatia Kaio Pereira -  <img width="1920" height="1080" alt="Mapa da Empatia Kaio Pereira " src="https://github.com/user-attachments/assets/340c3268-8525-4098-afd3-31ec9ec541c1" />
+
+
 
 ## 4.3 Protótipos das Interfaces
 Tela de Login 
