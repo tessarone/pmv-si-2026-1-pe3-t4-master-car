@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MasterCar — Usuários</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="../css/users.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo.jpg" alt="MasterCar Logo">
+      <span class="sidebar-logo-text">MC</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Operações</span>
+
+      <button class="nav-item" data-nav="dashboard" onclick="navigate('dashboard')">
+        <span>Dashboard</span>
+      </button>
+
+      <button class="nav-item" data-nav="reservas" onclick="navigate('reservas')">
+        <span>Reservas</span>
+      </button>
+
+      <button class="nav-item" data-nav="veiculos" onclick="navigate('veiculos')">
+        <span>Veículos</span>
+      </button>
+
+      <button class="nav-item" data-nav="clientes" onclick="navigate('clientes')">
+        <span>Clientes</span>
+      </button>
+
+      <span class="nav-section-label" style="margin-top:12px;">Administração</span>
+
+      <button class="nav-item active" data-nav="users" onclick="navigate('users')">
+        <span>Usuários</span>
+      </button>
+
+      <button class="nav-item" data-nav="config" onclick="showToast('Em breve', 'info')">
+        <span>Configurações</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;">JA</div>
+        <button class="btn-logout" onclick="navigate('login')" title="Sair">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <nav class="breadcrumb">
+          <span class="breadcrumb-item">Usuários</span>
+        </nav>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-btn" title="Notificações">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+          </svg>
+        </button>
+        <div class="topbar-divider"></div>
+        <button class="topbar-btn" title="Perfil">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- PAGE: USERS -->
+    <div class="page page-container">
+
+      <div class="page-header page-header-row">
+        <div>
+          <h1 style="font-family:var(--font-display);font-size:2.2rem;letter-spacing:0.1em;text-transform:uppercase;line-height:1;color:var(--white);">Usuários</h1>
+          <p style="margin-top:6px;font-size:.875rem;color:var(--gray-500);">Gerencie os acessos ao sistema</p>
+        </div>
+        <button class="btn btn-primary" onclick="openModal()">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+          Novo Usuário
+        </button>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="users-toolbar">
+        <div class="search-wrap">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input
+            type="search"
+            class="search-input"
+            placeholder="Buscar usuário..."
+            oninput="filterTable(this.value)"
+          >
+        </div>
+        <select class="filter-select" onchange="filterByRole(this.value)">
+          <option value="">Todos os perfis</option>
+          <option value="admin">Administrador</option>
+          <option value="employee">Funcionário</option>
+        </select>
+      </div>
+
+      <!-- TABLE -->
+      <div class="users-table-card">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Usuário</th>
+              <th>Perfil</th>
+              <th>Status</th>
+              <th>Último acesso</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-cell-avatar">JA</div>
+                  <div>
+                    <div class="user-cell-name">João Alves</div>
+                    <div class="user-cell-email">joao.alves@mastercar.com</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-pill role-admin" data-role="admin">Administrador</span></td>
+              <td><span class="badge badge-green">Ativo</span></td>
+              <td style="font-size:.8rem;color:var(--gray-500);">Hoje, 09:15</td>
+              <td>
+                <div class="actions-cell">
+                  <button class="action-btn" title="Editar" onclick="openEditModal('João Alves','João@mastercar.com','admin')">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                  </button>
+                  <button class="action-btn delete" title="Remover" onclick="confirmDelete('João Alves')">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-cell-avatar">AS</div>
+                  <div>
+                    <div class="user-cell-name">Ana Souza</div>
+                    <div class="user-cell-email">ana@mastercar.com</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-pill role-employee" data-role="employee">Funcionário</span></td>
+              <td><span class="badge badge-green">Ativo</span></td>
+              <td style="font-size:.8rem;color:var(--gray-500);">Hoje, 08:42</td>
+              <td>
+                <div class="actions-cell">
+                  <button class="action-btn" title="Editar" onclick="openEditModal('Ana Souza','ana@mastercar.com','employee')">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                  </button>
+                  <button class="action-btn delete" title="Remover" onclick="confirmDelete('Ana Souza')">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-cell-avatar">PM</div>
+                  <div>
+                    <div class="user-cell-name">Pedro Martins</div>
+                    <div class="user-cell-email">pedro@mastercar.com</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-pill role-employee" data-role="employee">Funcionário</span></td>
+              <td><span class="badge badge-yellow">Inativo</span></td>
+              <td style="font-size:.8rem;color:var(--gray-500);">18 Abr, 14:30</td>
+              <td>
+                <div class="actions-cell">
+                  <button class="action-btn" title="Editar" onclick="openEditModal('Pedro Martins','pedro@mastercar.com','employee')">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                  </button>
+                  <button class="action-btn delete" title="Remover" onclick="confirmDelete('Pedro Martins')">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /page -->
+
+  </div><!-- /main-content -->
+</div><!-- /app-layout -->
+
+<!-- ═══ MODAL: NOVO/EDITAR USUÁRIO ═══ -->
+<div class="modal-overlay" id="userModal" style="display:none;">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title">Novo Usuário</h2>
+        <p class="modal-subtitle">Preencha os dados para criar o acesso</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <form onsubmit="saveUser(event)">
+      <div class="modal-body">
+
+        <div class="field-group">
+          <label>Nome Completo</label>
+          <input type="text" name="fullname" class="field-input" placeholder="Ex: Ana Silva" required>
+        </div>
+
+        <div class="modal-row">
+          <div class="field-group">
+            <label>E-mail</label>
+            <input type="email" name="email" class="field-input" placeholder="ana@email.com" required>
+          </div>
+          <div class="field-group">
+            <label>Perfil de Acesso</label>
+            <select name="role" class="field-input">
+              <option value="">Selecionar</option>
+              <option value="admin">Administrador</option>
+              <option value="employee">Funcionário</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Senha</label>
+          <input
+            type="password"
+            name="password"
+            class="field-input"
+            placeholder="Mínimo 8 caracteres"
+            oninput="checkPasswordStrength(this.value)"
+          >
+          <div class="password-strength">
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Confirmar Senha</label>
+          <input type="password" name="confirm_password" class="field-input" placeholder="Repita a senha">
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar Usuário</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+
+  function openModal() {
+    document.getElementById('userModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('userModal').style.display = 'none';
+  }
+
+  function saveUser(event) {
+    event.preventDefault();
+    alert('Usuário salvo com sucesso!');
+    closeModal();
+  }
+
+  function filterTable(value) {
+    console.log('Filtrar:', value);
+  }
+
+  function filterByRole(role) {
+    console.log('Filtrar por role:', role);
+  }
+
+  function openEditModal(name, email, role) {
+    alert(`Editar ${name}`);
+  }
+
+  function confirmDelete(name) {
+    if (confirm(`Deseja remover ${name}?`)) {
+      alert(`${name} removido!`);
+    }
+  }
+
+  function checkPasswordStrength(password) {
+    const bars = document.querySelectorAll('.strength-bar');
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+    if (/\d/.test(password)) strength++;
+    if (/[!@#$%^&*]/.test(password)) strength++;
+    
+    bars.forEach((bar, index) => {
+      bar.style.background = index < strength ? 'var(--white)' : 'var(--gray-700)';
+    });
+  }
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>
