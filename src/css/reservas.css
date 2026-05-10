@@ -1,0 +1,265 @@
+/* ─── RESERVAS PAGE ─── */
+
+/* ── KPI ROW ── */
+.res-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.res-kpi {
+  background: var(--black-soft);
+  border: 1px solid var(--gray-900);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: border-color var(--transition), transform var(--transition);
+  animation: fadeUp 0.4s ease both;
+}
+.res-kpi:nth-child(1) { animation-delay: 0.05s; }
+.res-kpi:nth-child(2) { animation-delay: 0.10s; }
+.res-kpi:nth-child(3) { animation-delay: 0.15s; }
+.res-kpi:hover {
+  border-color: var(--gray-700);
+  transform: translateY(-1px);
+}
+
+.res-kpi-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--gray-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gray-500);
+}
+.res-kpi-icon.green  { color: #60d48c; background: rgba(96,212,140,.08); }
+.res-kpi-icon.yellow { color: #f0c040; background: rgba(240,192,64,.08); }
+.res-kpi-icon.gray   { color: var(--gray-400); }
+
+.res-kpi-val {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--white);
+  line-height: 1;
+}
+
+.res-kpi-label {
+  font-family: var(--font-condensed);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-top: 3px;
+}
+
+/* ── TOOLBAR ── */
+.users-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+.search-wrap svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-600);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  background: var(--black-mid);
+  border: 1px solid var(--gray-800);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-size: 0.85rem;
+}
+.search-input:focus { border-color: var(--gray-600); outline: none; }
+
+.filter-select {
+  padding: 10px 36px 10px 14px;
+  background: var(--black-mid);
+  border: 1px solid var(--gray-800);
+  border-radius: var(--radius-sm);
+  color: var(--gray-300);
+  font-size: 0.82rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+/* ── TABLE ── */
+.users-table-card {
+  background: var(--black-soft);
+  border: 1px solid var(--gray-900);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  animation: fadeUp 0.4s 0.2s ease both;
+}
+
+.users-table { width: 100%; border-collapse: collapse; }
+.users-table thead tr { border-bottom: 1px solid var(--gray-900); }
+.users-table th {
+  padding: 14px 20px;
+  font-family: var(--font-condensed);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  text-align: left;
+  font-weight: 600;
+}
+.users-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--gray-900);
+  vertical-align: middle;
+}
+.users-table tbody tr:last-child td { border-bottom: none; }
+.users-table tbody tr:hover { background: rgba(255,255,255,.02); }
+
+.actions-cell { display: flex; gap: 6px; }
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--gray-900);
+  border: 1px solid var(--gray-800);
+  color: var(--gray-400);
+  font-size: 0.75rem;
+  font-family: var(--font-condensed);
+  letter-spacing: 0.06em;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.action-btn:hover { background: var(--gray-800); color: var(--white); }
+.action-btn.delete:hover {
+  background: rgba(255,80,80,.1);
+  border-color: rgba(255,80,80,.2);
+  color: #ff6b6b;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: var(--black-soft);
+  border: 1px solid var(--gray-800);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 540px;
+  overflow: hidden;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--gray-900);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--black-soft);
+  z-index: 1;
+}
+
+.modal-title {
+  font-family: var(--font-condensed);
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.modal-subtitle {
+  font-size: 0.78rem;
+  color: var(--gray-600);
+  margin-top: 3px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--gray-600);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: color var(--transition);
+}
+.modal-close:hover { color: var(--white); }
+
+.modal-body {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.modal-footer {
+  padding: 16px 28px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid var(--gray-900);
+  position: sticky;
+  bottom: 0;
+  background: var(--black-soft);
+}
+
+input[type="date"].field-input { color-scheme: dark; }
+
+/* Veículo availability chip */
+.veiculo-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-family: var(--font-condensed);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.chip-disponivel { background: rgba(96,212,140,.12);  color: #60d48c; }
+.chip-locado     { background: rgba(255,107,107,.12); color: #ff6b6b; }
+.chip-manutencao { background: rgba(240,192,64,.12);  color: #f0c040; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .res-kpi-row    { grid-template-columns: 1fr 1fr; }
+  .modal-row      { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .res-kpi-row    { grid-template-columns: 1fr; }
+}
